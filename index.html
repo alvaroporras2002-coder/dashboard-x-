@@ -3,106 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merchant CRM - Crystal Clear</title>
+  <title>Merchant CRM - Clean Interface</title>
   <style>
     :root {
-      /* Colores estilo Apple / MacOS */
-      --bg-color: #e5e5ea;
-      --bg-image: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                  radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                  radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-      --glass-bg: rgba(255, 255, 255, 0.65);
-      --glass-border: rgba(255, 255, 255, 0.4);
-      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      /* Paleta de colores minimalista */
+      --bg-body: #f5f5f7;
+      --bg-panel: #ffffff;
       --text-main: #1d1d1f;
       --text-muted: #86868b;
+      --border-color: #e5e5ea;
       --accent: #007aff;
-      --accent-hover: #0056b3;
+      --accent-hover: #0066d6;
       --danger: #ff3b30;
+      --danger-hover: #e03228;
       --success: #34c759;
-      --radius: 16px;
-      --radius-sm: 8px;
+      --success-bg: #e5f8eb;
+      --pending-bg: #fff0d4;
+      --pending-text: #d68300;
+      
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      
+      --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f5f5f7;
-      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-      background-attachment: fixed;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-body);
       color: var(--text-main);
       margin: 0;
-      padding: 20px;
+      padding: 24px;
       height: 100vh;
       box-sizing: border-box;
       display: flex;
-      gap: 20px;
+      gap: 24px;
       overflow: hidden;
+      font-size: 14px;
     }
 
-    /* Efecto Cristal */
-    .glass {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      box-shadow: var(--glass-shadow);
+    /* Paneles principales */
+    .panel {
+      background-color: var(--bg-panel);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-subtle);
+      border: 1px solid var(--border-color);
     }
 
-    /* Layout */
+    /* Sidebar */
     .sidebar {
       width: 260px;
-      padding: 20px;
+      padding: 24px 20px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
       flex-shrink: 0;
     }
 
-    .main-content {
-      flex: 1;
-      padding: 30px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .brand {
+      margin-bottom: 10px;
+      padding: 0 12px;
     }
 
-    h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.5px; }
-    h1 { font-size: 24px; }
-    h2 { font-size: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
-    
+    .brand h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
     /* Navegación */
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
     .nav-btn {
       background: transparent;
       border: none;
-      padding: 12px 16px;
+      padding: 10px 12px;
       border-radius: var(--radius-sm);
       text-align: left;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-main);
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .nav-btn:hover { background: rgba(0, 0, 0, 0.05); }
-    .nav-btn.active { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: var(--accent); }
-
-    /* Entradas y Botones */
-    input[type="text"], input[type="file"], select, textarea {
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(0,0,0,0.1);
-      background: rgba(255,255,255,0.8);
       font-size: 14px;
-      box-sizing: border-box;
-      font-family: inherit;
-      outline: none;
-      transition: border 0.2s;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--accent); }
-    
+
+    .nav-btn:hover {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background-color: #f0f7ff;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Área de importación */
+    .import-section {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .import-section h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin: 0 0 4px 0;
+      padding: 0 12px;
+    }
+
+    .file-upload-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .file-upload-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #f9f9fb;
+      border: 1px dashed #d1d1d6;
+      border-radius: var(--radius-md);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .file-upload-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: #f0f7ff;
+    }
+
+    .file-upload-wrapper input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .header-actions h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    /* Inputs y Botones */
+    .search-input {
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: #f9f9fb;
+      font-size: 14px;
+      width: 280px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    }
+
     .btn {
       background: var(--accent);
       color: white;
@@ -112,75 +208,275 @@
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: background-color 0.2s ease;
     }
-    .btn:hover { opacity: 0.9; }
-    .btn-small { padding: 6px 12px; font-size: 12px; }
-    .btn-danger { background: var(--danger); }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-danger {
+      background-color: var(--bg-body);
+      color: var(--danger);
+      border: 1px solid #ffcccb;
+    }
+
+    .btn-danger:hover {
+      background-color: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
 
     /* Tablas */
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
-    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.05); }
-    th { font-weight: 600; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
-    tr:hover { background: rgba(255,255,255,0.4); cursor: pointer; }
+    .table-container {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
 
-    /* Etiquetas de Estado */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f9f9fb;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr {
+      transition: background-color 0.15s ease;
+    }
+
+    tbody tr:hover {
+      background-color: #fcfcfd;
+      cursor: pointer;
+    }
+
+    .cell-title {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .cell-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Badges */
     .badge {
+      display: inline-block;
       padding: 4px 10px;
-      border-radius: 12px;
+      border-radius: 20px;
       font-size: 12px;
       font-weight: 500;
-      background: rgba(0,0,0,0.05);
-    }
-    .badge.success { background: rgba(52, 199, 89, 0.2); color: #248a3d; }
-    .badge.pending { background: rgba(255, 149, 0, 0.2); color: #b36b00; }
-
-    /* Utilidades */
-    .flex-row { display: flex; gap: 10px; align-items: center; }
-    .flex-between { display: flex; justify-content: space-between; align-items: center; }
-    .mt-10 { margin-top: 10px; }
-    .file-upload-box {
-      border: 1px dashed rgba(0,0,0,0.2);
-      padding: 15px;
-      border-radius: var(--radius-sm);
-      text-align: center;
-      font-size: 13px;
+      line-height: 1.2;
     }
 
-    /* Vista de Detalle de Merchant */
-    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .card { background: rgba(255,255,255,0.5); padding: 20px; border-radius: var(--radius); }
+    .badge.success {
+      background-color: var(--success-bg);
+      color: #1a8f36;
+    }
+
+    .badge.pending {
+      background-color: var(--pending-bg);
+      color: var(--pending-text);
+    }
     
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+    .badge.neutral {
+      background-color: var(--bg-body);
+      color: var(--text-muted);
+    }
+
+    /* Detalle de Comercio */
+    .detail-header {
+      margin-bottom: 24px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--text-main);
+    }
+
+    .merchant-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .merchant-meta {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .grid-2-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .info-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Checkboxes estilo Apple */
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .checkbox-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    
+    .checkbox-label {
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Lista de Tiquetes */
+    .ticket-item {
+      background: #f9f9fb;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .ticket-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .ticket-info {
+      flex: 1;
+    }
+    
+    .ticket-type {
+      font-weight: 600;
+      font-size: 14px;
+      margin-right: 8px;
+    }
+    
+    .ticket-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d1d1d6;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #aeaeb2;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>
 
   <!-- Sidebar -->
-  <aside class="glass sidebar">
-    <h1>Workspace</h1>
-    <nav style="display: flex; flex-direction: column; gap: 5px;">
+  <aside class="panel sidebar">
+    <div class="brand">
+      <h1>Dashboard</h1>
+    </div>
+    
+    <nav class="nav-menu">
       <button class="nav-btn active" id="btn-merchants" onclick="navigate('merchants')">Comercios</button>
-      <button class="nav-btn" id="btn-calls" onclick="navigate('calls')">Llamadas General</button>
-      <button class="nav-btn" id="btn-tickets" onclick="navigate('tickets')">Tiquetes General</button>
+      <button class="nav-btn" id="btn-calls" onclick="navigate('calls')">Historial Llamadas</button>
+      <button class="nav-btn" id="btn-tickets" onclick="navigate('tickets')">Todos los Tiquetes</button>
     </nav>
     
-    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
-      <h3 style="font-size: 14px; color: var(--text-muted);">Importar Datos (CSV)</h3>
-      <div class="file-upload-box">
-        <label>Comercios <input type="file" id="csv-merchants" accept=".csv" onchange="importCSV(event, 'merchants')" style="margin-top:5px;"></label>
+    <div class="import-section">
+      <h3>Datos (CSV)</h3>
+      
+      <div class="file-upload-wrapper">
+        <div class="file-upload-btn">Cargar Comercios</div>
+        <input type="file" id="csv-merchants" accept=".csv" onchange="importCSV(event, 'merchants')">
       </div>
-      <div class="file-upload-box">
-        <label>Llamadas <input type="file" id="csv-calls" accept=".csv" onchange="importCSV(event, 'calls')" style="margin-top:5px;"></label>
+      
+      <div class="file-upload-wrapper">
+        <div class="file-upload-btn">Cargar Llamadas</div>
+        <input type="file" id="csv-calls" accept=".csv" onchange="importCSV(event, 'calls')">
       </div>
-      <button class="btn btn-danger btn-small" onclick="clearData()">Borrar Datos</button>
+      
+      <button class="btn btn-danger" style="margin-top: 8px; width: 100%;" onclick="clearData()">Borrar Datos</button>
     </div>
   </aside>
 
   <!-- Main Content Area -->
-  <main class="glass main-content" id="app-view">
-    <!-- El contenido se inyecta dinámicamente con JS -->
+  <main class="panel main-content" id="app-view">
+    <!-- Contenido inyectado por JS -->
   </main>
 
   <script>
@@ -215,32 +511,42 @@
 
     function renderMerchantsList(container) {
       container.innerHTML = `
-        <div class="flex-between">
+        <div class="header-actions">
           <h2>Tus Comercios</h2>
-          <input type="text" id="search-merchant" placeholder="Buscar comercio..." style="width: 250px;" onkeyup="filterMerchants()">
+          <input type="text" class="search-input" id="search-merchant" placeholder="Buscar comercio..." onkeyup="filterMerchants()">
         </div>
-        <div style="overflow-y: auto;">
+        
+        <div class="table-container">
           <table>
             <thead>
               <tr>
-                <th>Nombre / Store ID</th>
-                <th>DM Name</th>
+                <th>Comercio</th>
+                <th>Responsable (DM)</th>
                 <th>Foto</th>
                 <th>Video</th>
                 <th>Tiquetes</th>
               </tr>
             </thead>
             <tbody id="merchant-table-body">
-              ${db.merchants.map((m, index) => `
+              ${db.merchants.map((m, index) => {
+                const ticketCount = db.tickets.filter(t => t.merchant_index === index && t.status === 'Open').length;
+                return `
                 <tr onclick="navigate('merchant-detail', ${index})">
-                  <td><strong>${m.store_name || m.name || 'Sin Nombre'}</strong><br><span style="font-size:12px; color:gray;">${m.store_id || ''}</span></td>
+                  <td>
+                    <div class="cell-title">${m.store_name || m.name || 'Sin Nombre'}</div>
+                    <div class="cell-subtitle">${m.store_id || m.account_id || ''}</div>
+                  </td>
                   <td>${m.dm_name || '-'}</td>
-                  <td><span class="badge ${m.has_photo ? 'success' : 'pending'}">${m.has_photo ? 'Listo' : 'Pendiente'}</span></td>
+                  <td><span class="badge ${m.has_photo ? 'success' : 'pending'}">${m.has_photo ? 'Lista' : 'Pendiente'}</span></td>
                   <td><span class="badge ${m.has_video ? 'success' : 'pending'}">${m.has_video ? 'Listo' : 'Pendiente'}</span></td>
-                  <td>${db.tickets.filter(t => t.merchant_index === index).length}</td>
+                  <td>
+                     ${ticketCount > 0 
+                        ? `<span style="color:var(--danger); font-weight:600;">${ticketCount} abiertos</span>` 
+                        : '<span style="color:var(--text-muted);">0</span>'}
+                  </td>
                 </tr>
-              `).join('')}
-              ${db.merchants.length === 0 ? '<tr><td colspan="5" style="text-align:center;">No hay comercios. Importa un CSV.</td></tr>' : ''}
+              `}).join('')}
+              ${db.merchants.length === 0 ? '<tr><td colspan="5"><div class="empty-state">No hay comercios. Importa un archivo CSV desde el menú lateral.</div></td></tr>' : ''}
             </tbody>
           </table>
         </div>
@@ -249,83 +555,98 @@
 
     function renderMerchantDetail(container, index) {
       const m = db.merchants[index];
-      const mCalls = db.calls.filter(c => (c.account_id && c.account_id === m.account_id) || (c.store_name && c.store_name === m.store_name));
+      // Filtrar llamadas por ID de cuenta o nombre
+      const mCalls = db.calls.filter(c => 
+        (c.account_id && m.account_id && c.account_id === m.account_id) || 
+        (c.store_name && m.store_name && c.store_name === m.store_name) ||
+        (c.prospect_company && m.store_name && c.prospect_company === m.store_name)
+      );
       const mTickets = db.tickets.filter(t => t.merchant_index === index);
 
       container.innerHTML = `
-        <div>
-          <button class="btn btn-small" style="background: rgba(0,0,0,0.1); color: var(--text-main);" onclick="navigate('merchants')">← Volver</button>
-          <h1 class="mt-10">${m.store_name || m.name || 'Comercio'}</h1>
-          <p style="color: var(--text-muted); font-size: 14px;">ID: ${m.store_id || m.account_id || '-'} | DM: ${m.dm_name || '-'}</p>
+        <div class="detail-header">
+          <a class="back-link" onclick="navigate('merchants')">← Volver a Comercios</a>
+          <h1 class="merchant-title">${m.store_name || m.name || 'Detalle del Comercio'}</h1>
+          <p class="merchant-meta">Store ID: ${m.store_id || '-'} • Account ID: ${m.account_id || '-'} • DM: ${m.dm_name || '-'}</p>
         </div>
 
-        <div class="detail-grid">
-          <!-- Controles de Tareas -->
-          <div class="card">
-            <h3>Multimedia y Tareas</h3>
-            <div class="flex-row mt-10">
-              <label><input type="checkbox" onchange="toggleMedia(${index}, 'photo')" ${m.has_photo ? 'checked' : ''}> Foto Agregada</label>
+        <div class="grid-2-col">
+          <!-- Tareas Multimedia -->
+          <div class="info-card">
+            <h3>Control Multimedia</h3>
+            <div class="checkbox-row">
+              <input type="checkbox" id="check-photo-${index}" onchange="toggleMedia(${index}, 'photo')" ${m.has_photo ? 'checked' : ''}>
+              <label for="check-photo-${index}" class="checkbox-label">Fotografía completada</label>
             </div>
-            <div class="flex-row mt-10">
-              <label><input type="checkbox" onchange="toggleMedia(${index}, 'video')" ${m.has_video ? 'checked' : ''}> Video Agregado</label>
+            <div class="checkbox-row">
+              <input type="checkbox" id="check-video-${index}" onchange="toggleMedia(${index}, 'video')" ${m.has_video ? 'checked' : ''}>
+              <label for="check-video-${index}" class="checkbox-label">Video completado</label>
             </div>
           </div>
 
-          <!-- Tiquetes -->
-          <div class="card">
-            <div class="flex-between">
-              <h3>Tiquetes</h3>
-              <button class="btn btn-small" onclick="addTicket(${index})">+ Nuevo</button>
-            </div>
-            <div id="ticket-list" class="mt-10" style="display:flex; flex-direction:column; gap:10px;">
+          <!-- Gestión de Tiquetes -->
+          <div class="info-card">
+            <h3>
+              Tiquetes
+              <button class="btn" style="padding: 6px 12px; font-size: 13px;" onclick="addTicket(${index})">Nuevo Tiquete</button>
+            </h3>
+            <div id="ticket-list">
               ${mTickets.map((t, i) => `
-                <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid #eee; display:flex; justify-content:space-between;">
-                  <div>
-                    <strong>${t.type}</strong> - <span class="badge ${t.status === 'Closed' ? 'success' : 'pending'}">${t.status}</span>
-                    <div style="font-size: 12px; color: gray; margin-top: 4px;">${t.note}</div>
+                <div class="ticket-item">
+                  <div class="ticket-info">
+                    <div>
+                      <span class="ticket-type">${t.type}</span>
+                      <span class="badge ${t.status === 'Closed' ? 'success' : 'pending'}">${t.status}</span>
+                    </div>
+                    <div class="ticket-note">${t.note || 'Sin detalles adicionales.'}</div>
                   </div>
-                  <button class="btn btn-small" onclick="closeTicket(${t.id})">Cerrar</button>
+                  ${t.status !== 'Closed' ? `<button class="btn" style="background:#e5e5ea; color:var(--text-main); padding: 4px 8px; font-size:12px;" onclick="closeTicket(${t.id}, ${index})">Cerrar</button>` : ''}
                 </div>
               `).join('')}
-              ${mTickets.length === 0 ? '<p style="font-size:13px; color:gray;">No hay tiquetes abiertos.</p>' : ''}
+              ${mTickets.length === 0 ? '<div class="empty-state" style="padding: 20px 0;">No hay tiquetes registrados.</div>' : ''}
             </div>
           </div>
         </div>
 
         <!-- Historial de Llamadas -->
-        <div class="card" style="flex: 1; overflow-y: auto;">
-          <h3>Historial de Llamadas (Desde CSV)</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Contacto</th>
-                <th>Resultado</th>
-                <th>Duración</th>
-                <th>Nota</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${mCalls.map(c => `
+        <div class="info-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+          <h3 style="padding: 20px 20px 16px 20px; border-bottom: 1px solid var(--border-color); margin:0;">Historial de Llamadas</h3>
+          <div style="overflow-y: auto;">
+            <table>
+              <thead>
                 <tr>
-                  <td>${c.created_at || c.date || '-'}</td>
-                  <td>${c.prospect_first_name || c.contact || '-'}</td>
-                  <td><span class="badge" style="background: #eef2f5;">${c.outcome || c.disposition || '-'}</span></td>
-                  <td>${c.duration_seconds || c.duration || '-'}s</td>
-                  <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${c.note || ''}">${c.note || '-'}</td>
+                  <th>Fecha</th>
+                  <th>Contacto</th>
+                  <th>Resultado</th>
+                  <th>Duración</th>
+                  <th>Notas</th>
                 </tr>
-              `).join('')}
-              ${mCalls.length === 0 ? '<tr><td colspan="5">No hay llamadas registradas para este comercio.</td></tr>' : ''}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                ${mCalls.map(c => `
+                  <tr>
+                    <td style="white-space: nowrap;">${c.created_at || c.date || '-'}</td>
+                    <td>${c.prospect_first_name || c.contact || '-'}</td>
+                    <td><span class="badge neutral">${c.outcome || c.disposition || '-'}</span></td>
+                    <td>${c.duration_seconds ? c.duration_seconds + 's' : (c.duration || '-')}</td>
+                    <td style="font-size: 13px; color: var(--text-muted); max-width: 300px;">${c.note || '-'}</td>
+                  </tr>
+                `).join('')}
+                ${mCalls.length === 0 ? '<tr><td colspan="5"><div class="empty-state">No se encontraron llamadas en el CSV para este comercio.</div></td></tr>' : ''}
+              </tbody>
+            </table>
+          </div>
         </div>
       `;
     }
 
     function renderCallsList(container) {
       container.innerHTML = `
-        <h2>Todas las Llamadas Importadas</h2>
-        <div style="overflow-y: auto;">
+        <div class="header-actions">
+          <h2>Llamadas Generales</h2>
+        </div>
+        
+        <div class="table-container" style="flex:1; overflow-y:auto;">
           <table>
             <thead>
               <tr>
@@ -333,19 +654,23 @@
                 <th>Comercio / Prospecto</th>
                 <th>Resultado</th>
                 <th>Duración</th>
-                <th>Nota</th>
+                <th>Notas</th>
               </tr>
             </thead>
             <tbody>
               ${db.calls.map(c => `
                 <tr>
-                  <td>${c.created_at || c.date || '-'}</td>
-                  <td><strong>${c.prospect_company || c.store_name || '-'}</strong><br><span style="font-size:12px; color:gray;">${c.prospect_first_name || ''}</span></td>
-                  <td><span class="badge" style="background: #eef2f5;">${c.outcome || c.disposition || '-'}</span></td>
-                  <td>${c.duration_seconds || c.duration || '-'}s</td>
-                  <td style="max-width: 300px; font-size:12px;">${c.note || '-'}</td>
+                  <td style="white-space: nowrap;">${c.created_at || c.date || '-'}</td>
+                  <td>
+                    <div class="cell-title">${c.prospect_company || c.store_name || 'Desconocido'}</div>
+                    <div class="cell-subtitle">${c.prospect_first_name || ''}</div>
+                  </td>
+                  <td><span class="badge neutral">${c.outcome || c.disposition || '-'}</span></td>
+                  <td>${c.duration_seconds ? c.duration_seconds + 's' : (c.duration || '-')}</td>
+                  <td style="font-size: 13px; color: var(--text-muted); max-width: 300px;">${c.note || '-'}</td>
                 </tr>
               `).join('')}
+              ${db.calls.length === 0 ? '<tr><td colspan="5"><div class="empty-state">No hay llamadas. Importa un archivo CSV de llamadas.</div></td></tr>' : ''}
             </tbody>
           </table>
         </div>
@@ -354,8 +679,11 @@
 
     function renderTicketsList(container) {
       container.innerHTML = `
-        <h2>Todos los Tiquetes</h2>
-        <div style="overflow-y: auto;">
+        <div class="header-actions">
+          <h2>Todos los Tiquetes</h2>
+        </div>
+        
+        <div class="table-container" style="flex:1; overflow-y:auto;">
           <table>
             <thead>
               <tr>
@@ -369,13 +697,16 @@
               ${db.tickets.map(t => {
                 const m = db.merchants[t.merchant_index] || {};
                 return `
-                <tr>
-                  <td>${m.store_name || 'Desconocido'}</td>
-                  <td>${t.type}</td>
+                <tr onclick="navigate('merchant-detail', ${t.merchant_index})">
+                  <td>
+                    <div class="cell-title">${m.store_name || 'Desconocido'}</div>
+                  </td>
+                  <td><span class="ticket-type">${t.type}</span></td>
                   <td><span class="badge ${t.status === 'Closed' ? 'success' : 'pending'}">${t.status}</span></td>
-                  <td>${t.note}</td>
+                  <td style="font-size: 13px; color: var(--text-muted);">${t.note}</td>
                 </tr>
               `}).join('')}
+              ${db.tickets.length === 0 ? '<tr><td colspan="4"><div class="empty-state">No hay tiquetes registrados en el sistema.</div></td></tr>' : ''}
             </tbody>
           </table>
         </div>
@@ -397,13 +728,13 @@
       if(type === 'photo') db.merchants[index].has_photo = !db.merchants[index].has_photo;
       if(type === 'video') db.merchants[index].has_video = !db.merchants[index].has_video;
       saveData();
-      navigate('merchant-detail', index);
+      // No re-renderizamos toda la vista para no perder el foco del checkbox, el estado ya se guardó
     }
 
     function addTicket(merchantIndex) {
       const type = prompt("Tipo de Tiquete (Ej. Menú, Foto, AM):");
       if(!type) return;
-      const note = prompt("Nota / Detalles del caso:");
+      const note = prompt("Detalles breves del caso:");
       db.tickets.push({
         id: Date.now(),
         merchant_index: merchantIndex,
@@ -415,14 +746,14 @@
       navigate('merchant-detail', merchantIndex);
     }
 
-    function closeTicket(ticketId) {
+    function closeTicket(ticketId, merchantIndex) {
       const t = db.tickets.find(x => x.id === ticketId);
       if(t) t.status = 'Closed';
       saveData();
-      navigate('merchant-detail', t.merchant_index);
+      navigate('merchant-detail', merchantIndex);
     }
 
-    // --- CSV PARSING LIGERO ---
+    // --- LECTOR DE CSV ---
     function importCSV(event, type) {
       const file = event.target.files[0];
       if (!file) return;
@@ -432,24 +763,20 @@
         const text = e.target.result;
         const rows = text.split('\n').filter(row => row.trim() !== '');
         
-        if(rows.length < 2) return alert("CSV vacío o inválido");
+        if(rows.length < 2) return alert("El archivo parece estar vacío o no tiene el formato correcto.");
         
-        // Extraer encabezados y limpiar comillas
         const headers = rows[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
         const parsedData = [];
 
         for(let i = 1; i < rows.length; i++) {
-          // Expresión regular simple para dividir por comas respetando comillas
           const values = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || rows[i].split(',');
           let obj = {};
           headers.forEach((h, index) => {
             let val = values[index] ? values[index].replace(/^"|"$/g, '').trim() : '';
-            // Mapeo automático de nombres de columnas comunes para que coincida con la interfaz
             const key = mapHeaderName(h); 
             obj[key] = val;
           });
           
-          // Mantener compatibilidad con tu estructura anterior
           if(type === 'merchants') {
             obj.has_photo = false;
             obj.has_video = false;
@@ -461,14 +788,14 @@
         if (type === 'calls') db.calls = parsedData;
         
         saveData();
-        alert(`¡${parsedData.length} registros de ${type} importados con éxito!`);
+        // Limpiar el input para permitir cargar el mismo archivo si hubo cambios
+        event.target.value = ''; 
         navigate(type);
       };
       reader.readAsText(file);
     }
 
     function mapHeaderName(header) {
-      // Normalizar nombres de columnas del CSV a claves internas
       if(header.includes('store name') || header.includes('business name')) return 'store_name';
       if(header.includes('dm name') || header.includes('prospect first name')) return 'dm_name';
       if(header.includes('account id') || header.includes('store id')) return 'account_id';
@@ -476,18 +803,18 @@
       if(header.includes('outcome') || header.includes('disposition')) return 'outcome';
       if(header.includes('note')) return 'note';
       if(header.includes('created at') || header.includes('date')) return 'created_at';
-      return header.replace(/ /g, '_'); // Fallback
+      return header.replace(/ /g, '_');
     }
 
     function clearData() {
-      if(confirm("¿Estás seguro de que deseas borrar TODOS los datos (Comercios, Llamadas y Tiquetes)?")) {
+      if(confirm("¿Borrar todos los datos locales? Esto eliminará comercios, llamadas y tiquetes.")) {
         db = { merchants: [], calls: [], tickets: [] };
         saveData();
         navigate('merchants');
       }
     }
 
-    // Iniciar aplicación
+    // Inicialización
     navigate('merchants');
   </script>
 </body>
